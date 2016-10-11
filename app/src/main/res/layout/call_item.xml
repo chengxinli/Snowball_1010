@@ -10,7 +10,8 @@
             android:id="@+id/call_item_bt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center" />
+            android:gravity="center"
+            android:onClick="Call"/>
         <!--android:background="#fff"-->
 
 </LinearLayout>

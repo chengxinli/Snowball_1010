@@ -6,6 +6,7 @@ import android.hardware.display.DisplayManager;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -19,6 +20,8 @@ public class CallActivity extends Activity {
     private Context mNumContext;
     //private ArrayList<CallDatas> mCallList;
     private GridView mGridView;
+    private EditText et;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
@@ -27,6 +30,9 @@ public class CallActivity extends Activity {
         CallAdapter callAdapter = new CallAdapter(mNumContext,mCallList());
         mGridView.setAdapter(callAdapter);
 
+//        et = (EditText) findViewById(R.id.gridview_call);
+//        findViewById(R.id.gridview_call);
+//        findViewById(R.id.call_item_bt);
     }
 
     private void init() {
@@ -50,5 +56,11 @@ public class CallActivity extends Activity {
 
         return mCallList;
     }
+
+    public void Call(View view){
+        Toast.makeText(this,"点击", Toast.LENGTH_LONG).show();
+
+    }
+
 
 }
