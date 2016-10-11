@@ -2,13 +2,11 @@ package example.chenxinli.com.snowball_1010;
 
 import android.app.Activity;
 import android.content.Context;
-import android.hardware.display.DisplayManager;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,19 +25,44 @@ public class CallActivity extends Activity {
         setContentView(R.layout.activity_call);
 
         init();
-        CallAdapter callAdapter = new CallAdapter(mNumContext,mCallList());
-        mGridView.setAdapter(callAdapter);
+        CallAdapter callAdapter = new CallAdapter(mNumContext, mCallList());
 
-//        et = (EditText) findViewById(R.id.gridview_call);
-//        findViewById(R.id.gridview_call);
-//        findViewById(R.id.call_item_bt);
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CallDatas callDatas = (CallDatas) view.getTag();
+                if ("~".equals(callDatas.getNums())) {
+                    //TODO 拨打电话
+
+                } else if ("*".equals(callDatas.getNums())) {
+                    //TODO 删除
+                    String str = et.getText().toString();
+                    if (null != str  ){
+                        if ( str.length() > 1){
+                            str = str.substring(0, str.length() - 1);
+                        }else {
+                            str = "";
+                        }
+                        et.setText(str);
+                    }
+                } else { //输入
+                    String str = et.getText().toString();
+                    str = str + callDatas.getNums();
+                    et.setText(str);
+                }
+
+            }
+        });
+        mGridView.setAdapter(callAdapter);
     }
 
     private void init() {
-        mGridView =(GridView) findViewById(R.id.gridview_call);
         mNumContext = CallActivity.this;
+        mGridView = (GridView) findViewById(R.id.gridview_call);
+        et = (EditText) findViewById(R.id.et_input_number);
     }
-    public ArrayList<CallDatas> mCallList(){
+
+    public ArrayList<CallDatas> mCallList() {
         ArrayList<CallDatas> mCallList = new ArrayList<CallDatas>();
         mCallList.add(new CallDatas("1"));
         mCallList.add(new CallDatas("2"));
@@ -57,10 +80,12 @@ public class CallActivity extends Activity {
         return mCallList;
     }
 
-    public void Call(View view){
-        Toast.makeText(this,"点击", Toast.LENGTH_LONG).show();
 
-    }
+    //这个点击事件不要了
+//    public void Call(View view){
+//        Toast.makeText(this,"点击", Toast.LENGTH_LONG).show();
+//
+//    }
 
 
 }

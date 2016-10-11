@@ -2,16 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:gravity="bottom"
-    android:layout_height="match_parent"
+    android:layout_height="80dip"
     android:layout_gravity="center">
 
 
-        <Button
+        <TextView
             android:id="@+id/call_item_bt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
             android:gravity="center"
-            android:onClick="Call"/>
+            />
         <!--android:background="#fff"-->
 
 </LinearLayout>

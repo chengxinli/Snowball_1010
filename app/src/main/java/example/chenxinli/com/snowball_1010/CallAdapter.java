@@ -5,8 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -47,17 +47,20 @@ public class CallAdapter extends BaseAdapter {
             View vimage = layoutInflater.inflate(R.layout.call_image, null);
             ImageView imageView = (ImageView) vimage.findViewById(R.id.call_item_iv);
             imageView.setBackgroundResource(R.drawable.call);
+            vimage.setTag(callDatas);
             return vimage;
         } else if (i == 11) {
             View vimage = layoutInflater.inflate(R.layout.call_image, null);
             ImageView imageView = (ImageView) vimage.findViewById(R.id.call_item_iv);
             imageView.setBackgroundResource(R.drawable.holdup);
+            vimage.setTag(callDatas);
             return vimage;
         } else {
             View v = layoutInflater.inflate(R.layout.call_item, null);
-            Button button = (Button) v.findViewById(R.id.call_item_bt);
+            TextView button = (TextView) v.findViewById(R.id.call_item_bt);
             // Log.d("aaa","data=="+datas.getAppName());
             button.setText(callDatas.getNums());
+            v.setTag(callDatas);
             return v;
         }
     }
