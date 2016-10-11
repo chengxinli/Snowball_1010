@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.hardware.display.DisplayManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
@@ -64,7 +63,13 @@ public class MusicActivity extends Activity {
         mDisplayManager = (DisplayManager)getSystemService(Context.DISPLAY_SERVICE);
         String displayCategory = DisplayManager.DISPLAY_CATEGORY_PRESENTATION;
         Display[] displays = mDisplayManager.getDisplays(displayCategory); //获取 所有的显示
-        DemoPresentation presentation =  new DemoPresentation(this,displays[0]); //创建 自定义 Presentation
-        presentation.show(); //显示
+
+        if(null!= displays && displays.length >0){
+            DemoPresentation presentation =  new DemoPresentation(this,displays[0]); //创建 自定义 Presentation
+            presentation.show(); //显示
+        } else {
+            Toast.makeText(mMusicContext,"未开启多屏显示",Toast.LENGTH_LONG).show();
+        }
+
     }
 }
